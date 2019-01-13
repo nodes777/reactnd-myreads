@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BookDetails from './BookDetails'
 import BookShelfChanger from './BookShelfChanger'
 
 
-class BookList extends React.Component {
+class BookDetails extends React.Component {
   static propTypes = {
-   
+    title: PropTypes.string.isRequired,
+    authors: PropTypes.array.isRequired,
+    imageURL: PropTypes.string.isRequired
   }
 
   render() {
@@ -26,4 +27,4 @@ class BookList extends React.Component {
   }
 }
 
-export default BookList
+export default BookDetails

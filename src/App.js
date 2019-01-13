@@ -16,8 +16,21 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
+      let currReadingBooks = books.filter(book => {
+          return book.shelf == 'currentlyReading'
+        })
+      let wantToReadBooks = books.filter(book => {
+          return book.shelf == 'wantToRead'
+        })
+      let readBooks = books.filter(book => {
+          return book.shelf == 'read'
+        })
       this.setState((prevState, props) => {
-          return {allBooks: books};
+          return {
+            currentlyReading: currReadingBooks,
+            wantToRead: wantToReadBooks,
+            read: readBooks
+          };
       })
     })
   }

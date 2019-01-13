@@ -11,7 +11,6 @@ class BookList extends React.Component {
 
   render() {
     const { bookShelfTitle, bookList } = this.props
-    console.log(bookList)
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{bookShelfTitle}</h2>
@@ -19,6 +18,7 @@ class BookList extends React.Component {
           {bookList.map((book) => {
             return (
               <BookDetails 
+                key={book.id}
                 title={book.title}
                 authors={book.authors}
                 imageURL={book.imageLinks.thumbnail}

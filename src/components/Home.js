@@ -15,9 +15,9 @@ class Home extends React.Component {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            <BookList bookShelfTitle={'Currently Reading'} bookList={appBooks.allBooks}/>
-            {/*<BookList bookShelfTitle={'Want To Read'}/>
-            <BookList bookShelfTitle={'Read'}/>*/}
+            <BookList bookShelfTitle={'Currently Reading'} bookList={appBooks.currentlyReading}/>
+            <BookList bookShelfTitle={'Want To Read'} bookList={appBooks.wantToRead}/>
+            <BookList bookShelfTitle={'Read'} bookList={appBooks.read}/>
           </div>
       </div>    
     )
