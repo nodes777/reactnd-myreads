@@ -5,19 +5,20 @@ import BookList from './BookList'
 class Home extends React.Component {
   static propTypes = {
     appBooks: PropTypes.object.isRequired,
+    updateBookShelf: PropTypes.func.isRequired
   }
 
   render() {
-    const { appBooks } = this.props;
+    const { appBooks, updateBookShelf } = this.props;
     return (
       <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            <BookList bookShelfTitle={'Currently Reading'} bookList={appBooks.currentlyReading}/>
-            <BookList bookShelfTitle={'Want To Read'} bookList={appBooks.wantToRead}/>
-            <BookList bookShelfTitle={'Read'} bookList={appBooks.read}/>
+            <BookList bookShelfTitle={'Currently Reading'} bookList={appBooks.currentlyReading} updateBookShelf={updateBookShelf}/>
+            <BookList bookShelfTitle={'Want To Read'} bookList={appBooks.wantToRead} updateBookShelf={updateBookShelf}/>
+            <BookList bookShelfTitle={'Read'} bookList={appBooks.read} updateBookShelf={updateBookShelf}/>
           </div>
       </div>    
     )

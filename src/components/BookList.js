@@ -7,10 +7,11 @@ class BookList extends React.Component {
   static propTypes = {
     bookShelfTitle: PropTypes.string.isRequired,
     bookList: PropTypes.array.isRequired,
+    updateBookShelf: PropTypes.func.isRequired
   }
 
   render() {
-    const { bookShelfTitle, bookList } = this.props
+    const { bookShelfTitle, bookList, updateBookShelf } = this.props
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{bookShelfTitle}</h2>
@@ -19,9 +20,12 @@ class BookList extends React.Component {
             return (
               <BookDetails 
                 key={book.id}
+                id={book.id}
                 title={book.title}
                 authors={book.authors}
                 imageURL={book.imageLinks.thumbnail}
+                updateBookShelf={updateBookShelf}
+                book={book}
               />
             )
           })}

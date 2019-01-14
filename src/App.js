@@ -17,20 +17,38 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       let currReadingBooks = books.filter(book => {
-          return book.shelf == 'currentlyReading'
+          return book.shelf === 'currentlyReading'
         })
       let wantToReadBooks = books.filter(book => {
-          return book.shelf == 'wantToRead'
+          return book.shelf === 'wantToRead'
         })
       let readBooks = books.filter(book => {
-          return book.shelf == 'read'
+          return book.shelf === 'read'
         })
       this.setState((prevState, props) => {
           return {
             currentlyReading: currReadingBooks,
             wantToRead: wantToReadBooks,
-            read: readBooks
+            read: readBooks,
+            allBooks: books
           };
+      })
+    })
+  }
+
+  updateBookShelf(book, newShelf) {
+    //keep a reference of the old shelf so you know where to remove book
+    let oldShelf = book.shelf
+    BooksAPI.update(book, newShelf)
+    .then((idObj) => {
+      this.setState(prevState => {
+        // API now has new shelf set
+        book.shelf = newShelf
+        let newState = {
+          [oldShelf]: prevState[oldShelf].filter((bookInShelf) => bookInShelf.id !== book.id  ),
+          [newShelf]: prevState[newShelf].concat([ book ])
+        } 
+        return newState;
       })
     })
   }
@@ -42,6 +60,7 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <Home
             appBooks={this.state}
+            updateBookShelf={(bookid, shelf) => {this.updateBookShelf(bookid, shelf)}}
           />
         )}/>
         <Route path='/search' component={Search} />
