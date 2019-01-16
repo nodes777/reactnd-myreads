@@ -10,17 +10,12 @@ class Search extends React.Component {
   } 
 
   updateQuery(query){
-    this.setState({
-      query: query.trim()
-    })
-  }
-
-  state = {
-    query:''
+    this.props.searchQuery(query.trim())
   }
 
   render() {
-    const {searchQuery, searchBooks, updateBookShelf} = this.props;
+    const {searchQuery, searchBooks, updateBookShelf, query} = this.props;
+    console.log(searchBooks)
     return (
       <div className="search-books">
             <div className="search-books-bar">
@@ -28,7 +23,7 @@ class Search extends React.Component {
               <div className="search-books-input-wrapper">
                 <input type="text" 
                 aria-label="Search by title or author"
-                value={this.state.query} 
+                value={query} 
                 placeholder="Search by title or author"
                 onChange={(e) => this.updateQuery(e.target.value)}/>
               </div>

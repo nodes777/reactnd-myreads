@@ -12,6 +12,7 @@ class BookList extends React.Component {
 
   render() {
     const { bookShelfTitle, bookList, updateBookShelf } = this.props
+    console.log(bookList)
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{bookShelfTitle}</h2>

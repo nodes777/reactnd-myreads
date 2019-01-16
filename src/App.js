@@ -11,8 +11,8 @@ class BooksApp extends React.Component {
     currentlyReading: [],
     wantToRead: [],
     read: [],
-    allBooks: [],
     searchBooks: [],
+    query: '',
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class BooksApp extends React.Component {
             currentlyReading: currReadingBooks,
             wantToRead: wantToReadBooks,
             read: readBooks,
-            allBooks: books,
+            searchBooks: books,
           };
       })
     })
@@ -55,11 +55,14 @@ class BooksApp extends React.Component {
   }
 
   search(query) {
+    console.log(query)
     BooksAPI.search(query)
-    .then((idObj) => {
+    .then((searchArray) => {
+      console.log(searchArray)
       this.setState(prevState => {
         let newState = {
-          searchBooks: []
+          query: query,
+          searchBooks: searchArray
         } 
         return newState;
       })
@@ -82,6 +85,7 @@ class BooksApp extends React.Component {
             searchBooks={this.state.searchBooks}
             searchQuery={(query) => {this.search(query)}}
             updateBookShelf={(bookid, shelf) => {this.updateBookShelf(bookid, shelf)}}
+            query={this.state.query}
           />
         )}/>
       </div>
