@@ -1,31 +1,44 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import BookList from './BookList'
 
-class Home extends React.Component {
+class Search extends React.Component {
+  static propTypes = {
+    searchBooks: PropTypes.array.isRequired,
+    searchQuery: PropTypes.func.isRequired
+  } 
+
+  updateQuery(query){
+    this.setState({
+      query: query.trim()
+    })
+  }
+
+  state = {
+    query:''
+  }
+
   render() {
+    const {searchQuery, searchBooks, updateBookShelf} = this.props;
     return (
       <div className="search-books">
             <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+              <button className="close-search" ><Link to="/" style={{display: 'block', height: '100%'}} />Close</button>
               <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input type="text" placeholder="Search by title or author"/>
-
+                <input type="text" 
+                aria-label="Search by title or author"
+                value={this.state.query} 
+                placeholder="Search by title or author"
+                onChange={(e) => this.updateQuery(e.target.value)}/>
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+               <BookList bookShelfTitle={'Search Results'} bookList={searchBooks} updateBookShelf={updateBookShelf}/>
             </div>
           </div>
     )
   }
 }
 
-export default Home
+export default Search

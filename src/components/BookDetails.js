@@ -8,12 +8,11 @@ class BookDetails extends React.Component {
     title: PropTypes.string.isRequired,
     authors: PropTypes.array.isRequired,
     imageURL: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
     updateBookShelf: PropTypes.func.isRequired
   }
 
   render() {
-    const { title, authors, imageURL, updateBookShelf, id, book} = this.props
+    const { title, authors, imageURL, updateBookShelf, book} = this.props
     return (
       <li>
         <div className="book">

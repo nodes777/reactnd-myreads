@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BookList from './BookList'
+import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
   static propTypes = {
@@ -14,6 +15,7 @@ class Home extends React.Component {
       <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
+            <Link className="link" to="/search">Search</Link>
           </div>
           <div className="list-books-content">
             <BookList bookShelfTitle={'Currently Reading'} bookList={appBooks.currentlyReading} updateBookShelf={updateBookShelf}/>
