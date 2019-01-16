@@ -31,7 +31,7 @@ class BooksApp extends React.Component {
             currentlyReading: currReadingBooks,
             wantToRead: wantToReadBooks,
             read: readBooks,
-            searchBooks: books,
+            allBooks: books,
           };
       })
     })
@@ -55,13 +55,17 @@ class BooksApp extends React.Component {
   }
 
   search(query) {
-    console.log(query)
+    this.setState({
+      query: query
+    })
+
     BooksAPI.search(query)
     .then((searchArray) => {
-      console.log(searchArray)
+      if( searchArray === undefined ||  searchArray.error) {
+        searchArray = []
+      }
       this.setState(prevState => {
         let newState = {
-          query: query,
           searchBooks: searchArray
         } 
         return newState;
