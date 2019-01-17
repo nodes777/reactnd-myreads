@@ -33,19 +33,19 @@ class BookShelfChanger extends React.Component {
             <div>Move to...</div>
             <button onClick={(e) => updateBookShelf( book, e.target.value)} value="currentlyReading" 
             disabled={book.shelf === "currentlyReading"}>
-              Currently Reading {book.shelf === "currentlyReading" && <span>&#10004;</span>}
+              Currently Reading {book.shelf === "currentlyReading" && <span> X &#10004;</span>}
             </button>
             <button onClick={(e) => updateBookShelf( book, e.target.value)} value="wantToRead"
             disabled={book.shelf === "wantToRead"}>
-              Want to Read {book.shelf === "wantToRead" && <span>&#10004;</span>} 
+              Want to Read {book.shelf === "wantToRead" && <span> X &#10004;</span>} 
             </button>
             <button onClick={(e) => updateBookShelf( book, e.target.value)} value="read" 
             disabled={book.shelf === "read"}>
-              Read {book.shelf === "read" && <span>&#10004;</span>}
+              Read {book.shelf === "read" && <span> X &#10004;</span>}
             </button>
             <button onClick={(e) => updateBookShelf( book, e.target.value)} value="none" 
             disabled={book.shelf === "none"}>
-              None {book.shelf === "none" && <span>&#10004;</span>}
+              None {book.shelf === "none" && <span> X &#10004;</span>}
             </button>
             <button onClick={() => this.expandButton()}>Close</button>
         </div>
