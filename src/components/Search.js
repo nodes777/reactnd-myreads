@@ -10,11 +10,11 @@ class Search extends React.Component {
   } 
 
   updateQuery(query){
-    this.props.searchQuery(query.trim())
+    this.props.searchQuery(query)
   }
 
   render() {
-    const {searchQuery, searchBooks, updateBookShelf, query} = this.props;
+    const {searchBooks, updateBookShelf, query} = this.props;
     console.log(searchBooks)
     return (
       <div className="search-books">

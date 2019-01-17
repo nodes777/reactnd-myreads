@@ -18,13 +18,13 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      let currReadingBooks = books.filter(book => {
+      const currReadingBooks = books.filter(book => {
           return book.shelf === 'currentlyReading'
         })
-      let wantToReadBooks = books.filter(book => {
+      const wantToReadBooks = books.filter(book => {
           return book.shelf === 'wantToRead'
         })
-      let readBooks = books.filter(book => {
+      const readBooks = books.filter(book => {
           return book.shelf === 'read'
         })
       this.setState((prevState, props) => {
@@ -40,13 +40,13 @@ class BooksApp extends React.Component {
 
   updateBookShelf(book, newShelf) {
     //keep a reference of the old shelf so you know where to remove book
-    let oldShelf = book.shelf || 'none'
+    const oldShelf = book.shelf || 'none'
     BooksAPI.update(book, newShelf)
     .then((idObj) => {
       this.setState(prevState => {
         // API now has new shelf set
         book.shelf = newShelf
-        let newState = {
+        const newState = {
           [oldShelf]: prevState[oldShelf].filter((bookInShelf) => bookInShelf.id !== book.id  ),
           [newShelf]: prevState[newShelf].concat([ book ])
         } 
@@ -59,24 +59,20 @@ class BooksApp extends React.Component {
     this.setState({
       query: query
     })
-
-    BooksAPI.search(query)
+    const trimmedQuery = query.trim()
+    BooksAPI.search(trimmedQuery)
     .then((searchArray) => {
       if( searchArray === undefined ||  searchArray.error) {
         searchArray = []
       }
-      this.setState(prevState => {
-        let newState = {
-          searchBooks: searchArray
-        } 
-        return newState;
+      this.setState({ 
+        searchBooks: searchArray
       })
     })
   }
 
 
   render() {
-    console.log(this.state)
     return (
       <div className="app">
         <Route exact path='/' render={() => (
@@ -98,4 +94,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default BooksApp;
