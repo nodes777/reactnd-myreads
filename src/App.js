@@ -12,6 +12,7 @@ class BooksApp extends React.Component {
     wantToRead: [],
     read: [],
     searchBooks: [],
+    none: [],
     query: '',
   }
 
@@ -39,7 +40,7 @@ class BooksApp extends React.Component {
 
   updateBookShelf(book, newShelf) {
     //keep a reference of the old shelf so you know where to remove book
-    let oldShelf = book.shelf
+    let oldShelf = book.shelf || 'none'
     BooksAPI.update(book, newShelf)
     .then((idObj) => {
       this.setState(prevState => {

@@ -18,7 +18,8 @@ class BookShelfChanger extends React.Component {
   }
 
   state = {
-    expanded: false
+    expanded: false,
+
   }
 
   render() {
@@ -30,9 +31,22 @@ class BookShelfChanger extends React.Component {
 		  <button onClick={() => this.expandButton()} aria-expanded={this.state.expanded} className="book-shelf-changer collapsible"></button>
         <div className={btn_class}>
             <div>Move to...</div>
-            <button onClick={(e) => updateBookShelf( book, e.target.value)} value="currentlyReading">Currently Reading</button>
-            <button onClick={(e) => updateBookShelf( book, e.target.value)} value="wantToRead">Want to Read</button>
-            <button onClick={(e) => updateBookShelf( book, e.target.value)} value="read">Read</button>
+            <button onClick={(e) => updateBookShelf( book, e.target.value)} value="currentlyReading" 
+            disabled={book.shelf === "currentlyReading"}>
+              Currently Reading {book.shelf === "currentlyReading" && <span>&#10004;</span>}
+            </button>
+            <button onClick={(e) => updateBookShelf( book, e.target.value)} value="wantToRead"
+            disabled={book.shelf === "wantToRead"}>
+              Want to Read {book.shelf === "wantToRead" && <span>&#10004;</span>} 
+            </button>
+            <button onClick={(e) => updateBookShelf( book, e.target.value)} value="read" 
+            disabled={book.shelf === "read"}>
+              Read {book.shelf === "read" && <span>&#10004;</span>}
+            </button>
+            <button onClick={(e) => updateBookShelf( book, e.target.value)} value="none" 
+            disabled={book.shelf === "none"}>
+              None {book.shelf === "none" && <span>&#10004;</span>}
+            </button>
             <button onClick={() => this.expandButton()}>Close</button>
         </div>
       </div>
