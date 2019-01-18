@@ -13,7 +13,6 @@ class BookDetails extends React.Component {
 
   render() {
     const { title, authors, imageURL, updateBookShelf, book} = this.props
-    console.log(authors)
     return (
       <li>
         <div className="book">

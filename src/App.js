@@ -6,6 +6,8 @@ import  Search  from './components/Search'
 
 import './App.css'
 
+const isUndefined = (x) => x === undefined;
+
 class BooksApp extends React.Component {
   state = {
     currentlyReading: [],
@@ -65,8 +67,16 @@ class BooksApp extends React.Component {
       if( searchArray === undefined ||  searchArray.error) {
         searchArray = []
       }
+      const searchArrayWithShelves = searchArray.map((book) => {
+        const stateBook = this.state.allBooks.forEach((stateBook) => {
+          if(stateBook.id === book.id){
+            book.shelf = stateBook.shelf
+          }
+        })
+        return book;
+      })
       this.setState({ 
-        searchBooks: searchArray
+        searchBooks: searchArrayWithShelves
       })
     })
   }

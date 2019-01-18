@@ -15,7 +15,6 @@ class Search extends React.Component {
 
   render() {
     const {searchBooks, updateBookShelf, query} = this.props;
-    console.log(searchBooks)
     return (
       <div className="search-books">
             <div className="search-books-bar">
@@ -36,4 +35,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search
+export default Search;

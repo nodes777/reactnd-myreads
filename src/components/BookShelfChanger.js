@@ -54,5 +54,5 @@ class BookShelfChanger extends React.Component {
   }
 }
 
-export default BookShelfChanger
+export default BookShelfChanger;
 
